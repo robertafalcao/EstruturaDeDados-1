@@ -84,6 +84,40 @@ struct RegInt* insereOrdenada(struct RegInt *p, int k)
     return(p);
 }
 
+struct RegInt* trazmenor(struct RegInt *p)
+{
+    struct RegInt *q, *k, *antM, *m;
+    
+    if(p == NULL || p->prox == NULL)
+    return (p);
+    else
+    {
+        q = p;
+        k = NULL;
+        antM = NULL;
+        m = q;
+        
+        while (q != NULL )
+        {
+            if (m->num > q->num)
+            {
+                antM = k;
+                m = q; 
+            }
+            k = q;
+            q = q->prox;
+            
+        }
+        if (antM != NULL)
+        {
+            antM->prox = m->prox;
+            m->prox = p; 
+            p = m;
+        }
+    }
+    return(p);
+}
+
 int main() {
     // Write C code here
     struct RegInt *pLista, *a, *b, *c, *d;
